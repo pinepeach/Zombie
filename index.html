@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel ='stylesheet' type = 'text/css' href = 'css/stylesheet.css'>
+</head>
+    <body>
+        <img id = 'zombie' src = 'images/zombie.png'>
+        <p id = 'score'>Score: 0</p>
+        <button id = 'volume25'>100%</button>
+        <button id = 'endbutton'>End</button>
+        <button id = 'playmusic'>Music</button>
+        <img id = 'endimagenone'>
+        <audio id='music'>
+            <source src = 'src/BTS.mp3'>
+        </audio>
+        <audio id = 'audio'>
+            <source src = 'src/explosion.mp3'>
+        </audio>
+
+    <script>
+        let music = document.getElementById('music');
+        let score = 0;
+        let exploding = false;
+        let movement = false;
+        let width = window.innerWidth
+        || document.documentElement.clientWidth
+        || document.body.clientWidth;
+
+        let height = window.innerHeight
+        || document.documentElement.clientHeight
+        || document.body.clientHeight;
+            
+        function ZombieMovement(){
+            let a = Math.floor((width-200)*Math.random());
+            let b = Math.floor((height-450)*Math.random());
+            document.getElementById('zombie').style.position = "absolute";
+            document.getElementById('zombie').style.left = a + 'px';
+            document.getElementById('zombie').style.top = b + 'px';
+        }
+
+        function Explosion(){
+            clearInterval(time)
+            document.getElementById('zombie').onclick = null
+            document.getElementById('zombie').src = 'images/explosion.gif';
+            score +=1
+            document.getElementById('score').innerHTML = 'Score: ' + score;
+            document.getElementById('audio').play();
+            setTimeout(AliveZombie,1400);
+        }
+
+        function AliveZombie(){
+            document.getElementById('zombie').src ='images/zombie.png';
+            time = setInterval(function(){ZombieMovement();},2000);
+            document.getElementById('zombie').onclick = Explosion;
+            ZombieMovement();
+        }
+
+        function End(){
+            document.getElementById('zombie').id ='end';
+            document.getElementById('endimagenone').id = 'endimage';
+            document.getElementById('endimage').src = 'images/zombie.png';
+            document.getElementById('score').innerHTML = 'Score: 0';
+        }
+
+        function BackgroundMusic(){
+            music.play();
+            document.getElementById('playmusic').innerHTML = 'Mute';
+            document.getElementById('playmusic').id = 'mute';
+            document.getElementById('mute').onclick = mute;
+        }
+
+        function mute(){
+            music.pause();
+            document.getElementById('mute').innerHTML = 'Music';
+            document.getElementById('mute').id = 'playmusic';
+            document.getElementById('playmusic').onclick = BackgroundMusic;
+        }
+
+        function volume25(){
+            music.volume = 0.25;
+            document.getElementById('volume25').innerHTML = '25%';
+            document.getElementById('volume25').id = 'volume50';
+            document.getElementById('volume50').onclick = volume50;
+        }
+
+        function volume50(){
+            music.volume = 0.50;
+            document.getElementById('volume50').innerHTML = '50%';
+            document.getElementById('volume50').id = 'volume75';
+            document.getElementById('volume75').onclick = volume75;
+        }
+
+        function volume75(){
+            music.volume = 0.75;
+            document.getElementById('volume75').innerHTML = '75%';
+            document.getElementById('volume75').id = 'volume100';
+            document.getElementById('volume100').onclick = volume100;
+        }
+
+        function volume100(){
+            music.volume = 1.0;
+            document.getElementById('volume100').innerHTML = '100%';
+            document.getElementById('volume100').id = 'volume25';
+            document.getElementById('volume25').onclick = volume25;
+        }
+
+        let time = setInterval(function(){ZombieMovement();},2000);
+        document.getElementById('volume25').onclick = volume25;
+        document.getElementById('playmusic').onclick = BackgroundMusic;
+        document.getElementById('zombie').onclick = Explosion;
+        document.getElementById('endbutton').onclick = End;
+
+        
+    </script>
+    </body>
+</html> 

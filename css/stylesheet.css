@@ -1,0 +1,71 @@
+img {
+    width:150px;
+    height:160px;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 250px;
+
+}
+#score{
+    position: absolute;
+    top:0%;
+    left:40%;
+    text-align: center;
+    font-family: fantasy;
+    font-size: 100px;
+    z-index:-1;
+}
+#end{
+    display:none;
+}
+#endbutton{
+    position: absolute;
+    top:95%;
+    left:50%;
+}
+#endimage{
+    width:150px;
+    height:160px;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 250px;
+}
+#endimagenone{
+    display:none;
+}
+body{
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+}
+#playmusic{
+    position: absolute;
+    left: 96%;
+    top: 0%;
+}
+#mute{
+    position: absolute;
+    left: 96%;
+    top: 0%;
+}
+#volume25{
+    position: absolute;
+    left: 96%;
+    top: 5%;
+}
+#volume50{
+    position: absolute;
+    left: 96%;
+    top: 5%;
+}
+#volume75{
+    position: absolute;
+    left: 96%;
+    top: 5%;
+}
+#volume100{
+    position: absolute;
+    left: 96%;
+    top: 5%;
+}
